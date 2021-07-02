@@ -24,8 +24,11 @@ def index():
 # Redirects
 @app.route('/passwords')
 def passwords():
+  passwords = ""
   keys = db.keys()
-  return redirect(url_for('index'))
+  for i in keys:
+    passwords = str(i) + " " + str(db[i]) + "\n" + passwords
+  return passwords
 
 
 
