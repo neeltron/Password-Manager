@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
 from replit import db
+import base64
 
 
 
@@ -15,7 +16,10 @@ def index():
   if request.method == "POST":
     plat = request.form.get('platform')
     passw = request.form.get('password')
-    db[plat] = passw
+    strin = passw.encode("ascii")
+    base64_bytes = base64.b64encode(strin)
+    base64_string = base64_bytes.decode("ascii")
+    db[plat] = base64_string
     return db[plat]
   return render_template("index.html")
   
