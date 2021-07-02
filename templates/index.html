@@ -5,6 +5,10 @@
     </title>
   </head>
   <body>
-    Hey there, feel free to use this starter kit for your Flask Project!
+    <h2>Password Manager</h2>
+    <form method = "post" action = "{{url_for("index")}}">
+      <input name = "password"></input>
+      <button>Submit</button>
+    </form>
   </body>
 </html>
