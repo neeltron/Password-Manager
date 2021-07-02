@@ -12,15 +12,19 @@ app = Flask(
 # Index page and Rendering Basic Templates
 @app.route('/', methods = ['GET', 'POST'])
 def index():
-  plat = request.form.get('platform')
-  passw = request.form.get('password')
-  return render_template('index.html')
+  if request.method == "POST":
+    plat = request.form.get('platform')
+    passw = request.form.get('password')
+    db[plat] = passw
+    return db[plat]
+  return render_template("index.html")
   
 
 
 # Redirects
-@app.route('/redirect')
-def redirec():
+@app.route('/passwords')
+def passwords():
+  keys = db.keys()
   return redirect(url_for('index'))
 
 
