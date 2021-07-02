@@ -31,7 +31,11 @@ def passwords():
   passwords = ""
   keys = db.keys()
   for i in keys:
-    passwords = str(i) + " " + str(db[i]) + "\n" + passwords
+    base64_string = db[i]
+    base64_bytes = base64_string.encode("ascii")
+    decoded_bytes = base64.b64decode(base64_bytes)
+    decoded = decoded_bytes.decode("ascii")
+    passwords = str(i) + " " + str(decoded) + "\n" + passwords
   return passwords
 
 
