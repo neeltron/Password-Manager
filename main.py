@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
+from replit import db
 
 
 
@@ -9,8 +10,10 @@ app = Flask(
 )
 
 # Index page and Rendering Basic Templates
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def index():
+  plat = request.form.get('platform')
+  passw = request.form.get('password')
   return render_template('index.html')
   
 
